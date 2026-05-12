@@ -88,7 +88,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'portfolio' / 'static']
+# Do not duplicate portfolio/static here: the portfolio app already contributes
+# the same files via AppDirectoriesFinder, which would confuse collectstatic.
+STATICFILES_DIRS = []
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # WhiteNoise static files storage for production readiness
