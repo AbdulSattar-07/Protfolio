@@ -324,8 +324,10 @@ Object-Oriented Programming''',
             {
                 'title': 'Intelligent ERP Chatbot — Multi-Agent System',
                 'slug': 'intelligent-erp-chatbot',
-                'description': 'Production-deployed multi-agent ERP chatbot for a live enterprise client, processing 500+ natural-language business queries per day with high accuracy.',
-                'full_description': '''Built a production-deployed multi-agent ERP chatbot for a live enterprise client. The system processes 500+ natural-language business queries per day and uses LangChain agents to handle inventory tracking, business Q&A, and real-time KPI dashboard generation. It also supports memory-enabled conversation context for multi-turn business dialogues.''',
+                'description': 'Production-deployed multi-agent ERP chatbot for a live enterprise client, processing 500+ natural-language business queries per day with high accuracy. [Internal Royal Soft production project]',
+                'full_description': '''Built a production-deployed multi-agent ERP chatbot for a live enterprise client. The system processes 500+ natural-language business queries per day and uses LangChain agents to handle inventory tracking, business Q&A, and real-time KPI dashboard generation. It also supports memory-enabled conversation context for multi-turn business dialogues.
+
+Note: This is an internal company production project. Public live link is not available due to confidentiality.''',
                 'features': '''500+ daily business queries
 Multi-agent orchestration
 Inventory tracking
@@ -337,7 +339,7 @@ Django production deployment
 Reduced manual lookup effort by around 40%''',
                 'categories': ['GenAI', 'NLP', 'Production'],
                 'technologies': ['Python', 'Django', 'LangChain', 'NLP', 'Plotly', 'MySQL'],
-                'github_url': 'https://github.com/AbdulSattar-07',
+                'github_url': '',
                 'live_url': '',
                 'status': 'production',
                 'featured': True,
@@ -348,8 +350,10 @@ Reduced manual lookup effort by around 40%''',
             {
                 'title': 'AI-Powered Enterprise PHP Code Generation System',
                 'slug': 'ai-php-code-generation',
-                'description': 'Production multi-agent RAG pipeline that auto-generates enterprise PHP ERP forms including CRUD, AJAX, and database logic.',
-                'full_description': '''Built an AI system to auto-generate enterprise PHP ERP forms using RAG and multi-agent architecture. The system retrieves real company code patterns from 1,400+ ERP code files and generates PHP forms aligned with the existing ERP codebase. The pipeline includes intent understanding, retrieval, LLM generation, validation, and production-ready output formatting.''',
+                'description': 'Production multi-agent RAG pipeline that auto-generates enterprise PHP ERP forms including CRUD, AJAX, and database logic. [Internal Royal Soft production project]',
+                'full_description': '''Built an AI system to auto-generate enterprise PHP ERP forms using RAG and multi-agent architecture. The system retrieves real company code patterns from 1,400+ ERP code files and generates PHP forms aligned with the existing ERP codebase. The pipeline includes intent understanding, retrieval, LLM generation, validation, and production-ready output formatting.
+
+Note: This is an internal company production project. Public live link is not available due to confidentiality.''',
                 'features': '''RAG-based code generation
 LangGraph multi-agent pipeline
 ChromaDB vector storage
@@ -361,7 +365,7 @@ Intent → Retrieval → LLM → Validation pipeline
 60%+ reduction in manual development effort''',
                 'categories': ['GenAI', 'RAG', 'Production'],
                 'technologies': ['Python', 'Django', 'LangChain', 'LangGraph', 'ChromaDB', 'OpenAI', 'MySQL', 'PHP'],
-                'github_url': 'https://github.com/AbdulSattar-07',
+                'github_url': '',
                 'live_url': '',
                 'status': 'production',
                 'featured': True,
@@ -372,8 +376,10 @@ Intent → Retrieval → LLM → Validation pipeline
             {
                 'title': 'SDLC Automation Bot — AI-Powered Workflow Automation',
                 'slug': 'sdlc-automation-bot',
-                'description': 'Production n8n automation bot that converts meeting transcripts, PDFs, and SDLC documents into structured development task plans.',
-                'full_description': '''Built a production-deployed SDLC Automation Bot using n8n. The system ingests meeting transcripts, PDFs, and SDLC documents, then converts unstructured input into structured developer task plans using a 3-stage GPT-4o-mini pipeline: Requirements, System Design, and Task Breakdown. It integrates with live TMS REST APIs for project matching, developer workload analysis, and automated task assignment.''',
+                'description': 'Production n8n automation bot that converts meeting transcripts, PDFs, and SDLC documents into structured development task plans. [Internal Royal Soft production project]',
+                'full_description': '''Built a production-deployed SDLC Automation Bot using n8n. The system ingests meeting transcripts, PDFs, and SDLC documents, then converts unstructured input into structured developer task plans using a 3-stage GPT-4o-mini pipeline: Requirements, System Design, and Task Breakdown. It integrates with live TMS REST APIs for project matching, developer workload analysis, and automated task assignment.
+
+Note: This is an internal company production project. Public live link is not available due to confidentiality.''',
                 'features': '''Meeting transcript parsing
 PDF and SDLC document ingestion
 3-stage GPT-4o-mini pipeline
@@ -386,7 +392,7 @@ Automated task assignment
 60%+ faster project kick-off''',
                 'categories': ['GenAI', 'Automation', 'Production'],
                 'technologies': ['Python', 'n8n', 'OpenAI', 'JavaScript', 'REST API', 'HTML/CSS'],
-                'github_url': 'https://github.com/AbdulSattar-07',
+                'github_url': '',
                 'live_url': '',
                 'status': 'production',
                 'featured': True,
@@ -411,7 +417,7 @@ MySQL database
 PythonAnywhere deployment''',
                 'categories': ['AI/ML', 'E-commerce'],
                 'technologies': ['Python', 'Django', 'Scikit-learn', 'Pandas', 'NumPy', 'MySQL'],
-                'github_url': 'https://github.com/AbdulSattar-07',
+                'github_url': '',
                 'live_url': 'https://abdul007.pythonanywhere.com',
                 'status': 'completed',
                 'featured': True,
@@ -438,7 +444,7 @@ ROC-AUC curves
 Precision-recall analysis''',
                 'categories': ['AI/ML', 'Healthcare', 'Classification'],
                 'technologies': ['Python', 'Scikit-learn', 'Pandas', 'Matplotlib', 'Jupyter Notebook', 'XGBoost', 'SMOTE'],
-                'github_url': 'https://github.com/AbdulSattar-07',
+                'github_url': '',
                 'live_url': '',
                 'status': 'completed',
                 'featured': False,
@@ -463,7 +469,7 @@ Bootstrap UI
 12 relational tables''',
                 'categories': ['Web Development', 'Django', 'HR System'],
                 'technologies': ['Python', 'Django', 'MySQL', 'Bootstrap', 'HTML/CSS'],
-                'github_url': 'https://github.com/AbdulSattar-07',
+                'github_url': '',
                 'live_url': '',
                 'status': 'completed',
                 'featured': False,
