@@ -6,6 +6,37 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
 import json
+import re
+from typing import Optional
+
+
+def _strip_placeholder_urls(url: Optional[str]) -> str:
+    """Return empty string for blank, '#', or other non-navigable placeholders."""
+    if not url:
+        return ""
+    u = str(url).strip()
+    if not u or u in {"#", "/", "http://#", "https://#", "http:///", "https:///"}:
+        return ""
+    if u.lower() in {"javascript:void(0)", "javascript:;"}:
+        return ""
+    return u
+
+
+def _normalize_live_url(url: Optional[str]) -> str:
+    u = _strip_placeholder_urls(url)
+    if not u:
+        return ""
+    if not re.match(r"^https?://", u, re.I):
+        return f"https://{u.lstrip('/')}"
+    return u
+
+
+def _project_status_label(project, live_url: str) -> str:
+    if live_url and project.status == "completed":
+        return "Live / Completed"
+    if project.status == "production" and not live_url:
+        return "Private Company Project"
+    return project.get_status_display()
 
 from .forms import ContactForm
 from .models import (
@@ -125,22 +156,32 @@ def projects(request):
         features = [
             line.strip() for line in (project.features or '').splitlines() if line.strip()
         ]
+        live_url = _normalize_live_url(project.live_url)
+        github_url = _strip_placeholder_urls(project.github_url)
+        is_company_private = project.status == "production" and not live_url
         projects_list.append({
             'id': project.id,
             'title': project.title,
             'desc': project.description,
             'category': categories,
             'tech': tech,
-            'link': project.live_url or '#',
-            'github': project.github_url,
+            'live_url': live_url,
+            'github_url': github_url,
             'features': features,
-            'status': project.get_status_display(),
+            'status_label': _project_status_label(project, live_url),
+            'status_code': project.status,
+            'is_company_private': is_company_private,
             'date': project.year or (project.created_at.year if project.created_at else ''),
             'rating': f"{project.rating:.1f}" if project.rating is not None else '',
         })
 
-    # Categories for filter chips
-    category_names = list(Category.objects.values_list('name', flat=True).order_by('name'))
+    # Category chips: only tags that are actually used by at least one project (keeps filters relevant)
+    category_names = list(
+        Category.objects.filter(projects__isnull=False)
+        .distinct()
+        .order_by('name')
+        .values_list('name', flat=True)
+    )
     categories = ['all'] + category_names
 
     context = {

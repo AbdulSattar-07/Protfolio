@@ -92,8 +92,7 @@
                                         <i data-lucide="zap" class="w-5 h-5 text-white"></i>
                                     </div>
                                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ category }}</h3>
-                                    <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">{{ skillList|length
-                                        }} skills</span>
+                                    <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">{{ skillList|length }} skills</span>
                                 </div>
 
                                 <!-- Skills Grid -->
@@ -104,13 +103,13 @@
                                         <div
                                             class="p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-700/50 dark:to-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                                             <div class="flex items-center justify-between mb-3">
-                                                <span class="font-semibold text-gray-800 dark:text-white">{{ skill.name
-                                                    }}</span>
-                                                <span
-                                                    class="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold rounded-full">{{
-                                                    skill.level }}%</span>
+                                                <span class="font-semibold text-gray-800 dark:text-white">{{ skill.name }}</span>
+                                                {% if skill.level %}
+                                                <span class="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold rounded-full">{{ skill.level }}%</span>
+                                                {% endif %}
                                             </div>
 
+                                            {% if skill.level %}
                                             <!-- Progress Bar -->
                                             <div
                                                 class="relative w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5 overflow-hidden">
@@ -139,6 +138,9 @@
                                                     Learning</span>
                                                 {% endif %}
                                             </div>
+                                            {% else %}
+                                            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Professional competency</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -168,8 +170,7 @@
                                     </div>
                                     <p class="text-gray-600 dark:text-gray-400 font-medium mb-1">{{ item.institution }}
                                     </p>
-                                    <p class="text-blue-600 dark:text-blue-400 text-sm font-semibold mb-3">{{ item.year
-                                        }}</p>
+                                    <p class="text-blue-600 dark:text-blue-400 text-sm font-semibold mb-3">{{ item.year }}</p>
                                     <div class="flex flex-wrap gap-2">
                                         {% for highlight in item.highlights %}
                                         <span
@@ -202,8 +203,7 @@
                                         </span>
                                     </div>
                                     <p class="text-gray-600 dark:text-gray-400 font-medium mb-1">{{ item.company }}</p>
-                                    <p class="text-blue-600 dark:text-blue-400 text-sm font-semibold mb-3">{{
-                                        item.period }}</p>
+                                    <p class="text-blue-600 dark:text-blue-400 text-sm font-semibold mb-3">{{ item.period }}</p>
                                     <div class="space-y-2">
                                         {% for achievement in item.achievements %}
                                         <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">

@@ -169,14 +169,12 @@
                                 class="absolute -left-1.5 sm:-left-2 top-0 w-3 h-3 sm:w-4 sm:h-4 bg-indigo-400 rounded-full">
                             </div>
                             <h4 class="text-base sm:text-lg font-bold text-gray-800 dark:text-white">{{ exp.role }}</h4>
-                            <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-xs sm:text-sm">{{
-                                exp.company }}</p>
+                            <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-xs sm:text-sm">{{ exp.company }}</p>
                             <p class="text-gray-500 dark:text-gray-400 text-xs mb-2 sm:mb-3 flex items-center gap-1">
                                 <i data-lucide="calendar" class="w-2.5 h-2.5"></i>
                                 {{ exp.period }}
                             </p>
-                            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{{
-                                exp.description }}</p>
+                            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{{ exp.description }}</p>
                         </div>
                         {% endfor %}
                     </div>
@@ -199,8 +197,7 @@
                             </div>
                             <h4 class="text-base sm:text-lg font-bold text-gray-800 dark:text-white">{{ edu.degree }}
                             </h4>
-                            <p class="text-green-600 dark:text-green-400 font-semibold text-xs sm:text-sm">{{
-                                edu.institution }}</p>
+                            <p class="text-green-600 dark:text-green-400 font-semibold text-xs sm:text-sm">{{ edu.institution }}</p>
                             <p class="text-gray-500 dark:text-gray-400 text-xs mb-1 flex items-center gap-1">
                                 <i data-lucide="calendar" class="w-2.5 h-2.5"></i>
                                 {{ edu.year }}

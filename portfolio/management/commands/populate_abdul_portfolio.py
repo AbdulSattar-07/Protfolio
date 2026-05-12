@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from portfolio.models import (
     Profile, AboutStat, SkillCategory, Skill, ExperienceEntry,
     EducationEntry, Project, Category, Technology, Achievement,
-    Certification, SiteSettings
+    Certification, SiteSettings, ResumeProjectHighlight,
 )
 from datetime import date
 
@@ -34,7 +34,8 @@ class Command(BaseCommand):
         self.populate_projects()
         self.populate_achievements()
         self.populate_certifications()
-        
+        self.populate_resume_highlights()
+
         self.stdout.write(self.style.SUCCESS('✅ Portfolio populated successfully!'))
         self.stdout.write(self.style.SUCCESS('You can now run: python manage.py runserver'))
         self.stdout.write(self.style.SUCCESS('And access admin at: http://127.0.0.1:8000/admin/'))
@@ -53,7 +54,7 @@ class Command(BaseCommand):
 
     def populate_profile(self):
         """Populate Profile data"""
-        profile, created = Profile.objects.get_or_create(
+        Profile.objects.update_or_create(
             id=1,
             defaults={
                 'name': 'Abdul Sattar',
@@ -71,11 +72,11 @@ At Royal Soft, I worked on live enterprise AI systems including an ERP chatbot, 
 I also led the development of an AI-powered e-commerce recommendation platform as my final year project, combining collaborative filtering and content-based filtering to deliver personalized product recommendations.'''
             }
         )
-        self.stdout.write(self.style.SUCCESS(f'✅ Profile {"created" if created else "updated"}'))
+        self.stdout.write(self.style.SUCCESS('✅ Profile saved'))
 
     def populate_site_settings(self):
         """Populate Site Settings"""
-        settings, created = SiteSettings.objects.get_or_create(
+        SiteSettings.objects.update_or_create(
             id=1,
             defaults={
                 'site_name': 'Abdul Sattar - AI & ML Engineer',
@@ -89,7 +90,7 @@ I also led the development of an AI-powered e-commerce recommendation platform a
                 'whatsapp_url': 'https://wa.me/923466126667',
             }
         )
-        self.stdout.write(self.style.SUCCESS(f'✅ Site Settings {"created" if created else "updated"}'))
+        self.stdout.write(self.style.SUCCESS('✅ Site settings saved'))
 
     def populate_about_stats(self):
         """Populate About Stats / Counters"""
@@ -152,22 +153,22 @@ I also led the development of an AI-powered e-commerce recommendation platform a
         
         order = 1
         for category_name, skills in skills_data.items():
-            category, _ = SkillCategory.objects.get_or_create(
+            category, _ = SkillCategory.objects.update_or_create(
                 name=category_name,
-                defaults={'section': 'about', 'order': order}
+                defaults={'section': 'both', 'order': order},
             )
             order += 1
-            
+
             skill_order = 1
             for skill_name, level in skills:
-                Skill.objects.get_or_create(
+                Skill.objects.update_or_create(
                     category=category,
                     name=skill_name,
-                    defaults={'level': level, 'order': skill_order}
+                    defaults={'level': level, 'order': skill_order},
                 )
                 skill_order += 1
-        
-        self.stdout.write(self.style.SUCCESS(f'✅ Created {len(skills_data)} Skill Categories'))
+
+        self.stdout.write(self.style.SUCCESS(f'✅ Synced {len(skills_data)} skill categories (About + Resume)'))
 
     def populate_experience(self):
         """Populate Experience Entries"""
@@ -482,29 +483,29 @@ Bootstrap UI
         for project_data in projects_data:
             categories = project_data.pop('categories')
             technologies = project_data.pop('technologies')
-            
-            project, created = Project.objects.get_or_create(
+
+            project, _ = Project.objects.update_or_create(
                 slug=project_data['slug'],
-                defaults=project_data
+                defaults=project_data,
             )
-            
-            # Add categories
+
+            project.categories.clear()
             for cat_name in categories:
                 try:
                     cat = Category.objects.get(name=cat_name)
                     project.categories.add(cat)
                 except Category.DoesNotExist:
                     pass
-            
-            # Add technologies
+
+            project.technologies.clear()
             for tech_name in technologies:
                 try:
                     tech = Technology.objects.get(name=tech_name)
                     project.technologies.add(tech)
                 except Technology.DoesNotExist:
                     pass
-        
-        self.stdout.write(self.style.SUCCESS(f'✅ Created {len(projects_data)} Projects'))
+
+        self.stdout.write(self.style.SUCCESS(f'✅ Synced {len(projects_data)} projects'))
 
     def populate_achievements(self):
         """Populate Achievements"""
@@ -576,3 +577,18 @@ Bootstrap UI
             )
         
         self.stdout.write(self.style.SUCCESS(f'✅ Created {len(certifications)} Certifications'))
+
+    def populate_resume_highlights(self):
+        """Key project lines shown on the Resume page."""
+        texts = [
+            'Intelligent ERP Chatbot — Multi-Agent System',
+            'AI-Powered Enterprise PHP Code Generation System',
+            'SDLC Automation Bot — AI-Powered Workflow Automation',
+            'AI-Powered E-Commerce Recommendation Engine',
+            'Diabetes Prediction ML Model',
+            'Employee Management System',
+        ]
+        ResumeProjectHighlight.objects.all().delete()
+        for order, text in enumerate(texts, start=1):
+            ResumeProjectHighlight.objects.create(text=text, order=order)
+        self.stdout.write(self.style.SUCCESS('✅ Resume key projects list synced'))
